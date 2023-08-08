@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.IJungahRepository">
+	
+	<insert id="insertJungah" parameterType="com.example.demo.model.Jungah">
+		<![CDATA[
+		    INSERT INTO community (no, title, content)
+		    VALUES (com_seq.nextval, #{title}, #{content})
+		]]>
+	</insert>
+	
+
+    <select id="selectAllJungah" resultType="com.example.demo.model.Jungah">
+		<![CDATA[
+        SELECT no AS "no", title AS "title", content AS "content"
+        FROM community
+        ]]>
+	</select>
+	
+	  <update id="updateJungah" parameterType="hashmap">
+		<![CDATA[
+        UPDATE community
+        SET title   = #{title},
+            content = #{content}
+        WHERE no = #{no}
+        ]]>
+	</update>
+	
+	<delete id="delete" parameterType="int">
+	<![CDATA[
+        DELETE
+        FROM community
+        WHERE no = #{no}
+        ]]>
+	</delete>
+	
+	
+	<select id="view" resultType="com.example.demo.model.Jungah">
+		<![CDATA[
+        SELECT no AS "no", title AS "title", content AS "content"
+        FROM community
+        WHERE no = #{no}
+        ]]>
+	</select>
+	</mapper>
